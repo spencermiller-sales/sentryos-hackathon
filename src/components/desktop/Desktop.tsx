@@ -7,6 +7,7 @@ import { DesktopIcon } from './DesktopIcon'
 import { Notepad } from './apps/Notepad'
 import { FolderView, FolderItem } from './apps/FolderView'
 import { Chat } from './apps/Chat'
+import { SentryTest } from './apps/SentryTest'
 import { useState } from 'react'
 
 const INSTALL_GUIDE_CONTENT = `# SentryOS Install Guide
@@ -111,6 +112,23 @@ function DesktopContent() {
     })
   }
 
+  const openSentryTest = () => {
+    openWindow({
+      id: 'sentry-test',
+      title: 'Sentry Test Console',
+      icon: '🐛',
+      x: 250,
+      y: 120,
+      width: 550,
+      height: 600,
+      minWidth: 450,
+      minHeight: 500,
+      isMinimized: false,
+      isMaximized: false,
+      content: <SentryTest />
+    })
+  }
+
   const handleDesktopClick = () => {
     setSelectedIcon(null)
   }
@@ -161,6 +179,14 @@ function DesktopContent() {
           onDoubleClick={openChatWindow}
           selected={selectedIcon === 'chat'}
           onSelect={() => setSelectedIcon('chat')}
+        />
+        <DesktopIcon
+          id="sentry-test"
+          label="Sentry Test"
+          icon="document"
+          onDoubleClick={openSentryTest}
+          selected={selectedIcon === 'sentry-test'}
+          onSelect={() => setSelectedIcon('sentry-test')}
         />
       </div>
 
